@@ -1,0 +1,5 @@
+robotframework                   # Framework para automação
+robotframework-appiumlibrary     # Biblioteca estável para Appium
+Appium-Python-Client             # Cliente Python para Appium
+robotframework-seleniumlibrary   # Para testes web 
+robotframework-requests          # Para chamadas de API

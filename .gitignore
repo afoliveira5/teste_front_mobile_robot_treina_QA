@@ -1,0 +1,27 @@
+# Ignorar a pasta de resultados
+results/
+
+# Ignorar arquivos de saída específicos do Robot Framework
+log.html
+output.xml
+report.html
+
+# Ignorar arquivos temporários ou de sistema
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db
+
+# Ignorar configurações específicas do sistema operacional
+.idea/
+.vscode/
+*.swp
+
+# Ignorar arquivos de logs gerais
+*.log
+*.tmp
+node_modules
+
+# Variáveis de ambiente
+.env
+.env.local

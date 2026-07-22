@@ -1,0 +1,79 @@
+image: python:3.9
+
+pipelines:
+  default:
+    - step:
+        name: Run Mobile Tests
+        caches:
+          - pip
+        script:
+          # Atualizando Node.js
+          - echo "Atualizando Node.js..."
+          - curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+          - apt-get install -y nodejs
+          - node --version
+
+          # Instalando Android SDK
+          - echo "Instalando Android SDK..."
+          - mkdir -p /opt/android-sdk
+          - wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -O /opt/android-sdk.zip
+          - unzip /opt/android-sdk.zip -d /opt/android-sdk
+          - rm /opt/android-sdk.zip
+
+          # Configurando variáveis de ambiente
+          - echo "Configurando variáveis de ambiente..."
+          - export ANDROID_HOME=/opt/android-sdk
+          - export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin
+
+          # Instalando ferramentas necessárias do Android SDK
+          - echo "Instalando ferramentas do Android SDK..."
+          - yes | sdkmanager --licenses
+          - sdkmanager --update
+          - sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+
+          # Verificando instalação do ADB
+          - echo "Verificando instalação do ADB..."
+          - if ! command -v adb &> /dev/null; then
+                echo "ADB não encontrado! Verifique a instalação do Android SDK.";
+                exit 1;
+            fi
+          - adb version
+
+          # Validando arquivo de capabilities
+          - echo "Validando Keywords_session.resource..."
+          - if [ ! -f "Keywords_session.resource" ]; then 
+                echo "Arquivo Keywords_session.resource não encontrado"; 
+                exit 1; 
+            fi
+
+          # Corrigindo referências nos arquivos de teste
+          - echo "Corrigindo referências nos arquivos de teste..."
+          - find tests/ -type f -name "*.robot" -exec sed -i 's#\.\./keywords/Keywords_session.resource#Keywords_session.resource#g' {} \;
+
+          # Instalando dependências do Python
+          - echo "Instalando dependências do Python..."
+          - pip install --upgrade pip
+          - pip install -r requirements.txt
+
+          # Instalando Appium e drivers
+          - echo "Instalando Appium..."
+          - npm install -g appium --unsafe-perm
+          - echo "Instalando driver UiAutomator2..."
+          - appium driver install uiautomator2
+
+          # Iniciando servidor Appium
+          - echo "Iniciando Appium Server..."
+          - appium --log-level error:debug --session-override &
+          - sleep 10
+
+          # Executando testes com Robot Framework
+          - echo "Executando testes do Robot Framework..."
+          - robot --outputdir results tests/
+        artifacts:
+          - results/**
+          - report.html
+          - log.html
+          - output.xml
+definitions:
+  caches:
+    pip: ~/.cache/pip
