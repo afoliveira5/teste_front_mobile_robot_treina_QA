@@ -45,6 +45,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.SpanStyle
@@ -131,6 +133,7 @@ fun TreinaField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
+    focusRequester: FocusRequester? = null,
     singleLine: Boolean = true,
     readOnly: Boolean = false,
     enabled: Boolean = true,
@@ -191,7 +194,8 @@ fun TreinaField(
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .seletorCampo(seletor),
+                .seletorCampo(seletor)
+                .then(if (focusRequester != null) Modifier.focusRequester(focusRequester) else Modifier),
         )
         if (erro != null) {
             Text(
