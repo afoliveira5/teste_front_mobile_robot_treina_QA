@@ -25,3 +25,13 @@ node_modules
 # Variáveis de ambiente
 .env
 .env.local
+
+# Android (treinaqa-android)
+treinaqa-android/.gradle/
+treinaqa-android/build/
+treinaqa-android/app/build/
+treinaqa-android/local.properties
+treinaqa-android/.idea/
+treinaqa-android/*.iml
+*.apk
+*.aab
