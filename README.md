@@ -6,8 +6,6 @@ Bem-vindo ao repositório de automação mobile utilizando Robot Framework e App
 
 Repositório: https://github.com/afoliveira5/teste_front_mobile_robot_treina_QA
 
-Relacionado: https://github.com/afoliveira5/robot_automacao_front_mobile
-
 ## Clone do projeto
 
 ```bash
@@ -114,11 +112,6 @@ Se o app não estiver no device, a keyword `Garantir APK instalado` instala auto
   "appium:fullReset": false
 }
 ```
-
-## Credenciais demo (seed do app)
-
-- E-mail: `teste@gmail.com`
-- Senha: `Test@mobi2024`
 
 ## Ordem de execução
 
