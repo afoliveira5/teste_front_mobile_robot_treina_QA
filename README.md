@@ -2,6 +2,18 @@
 
 Projeto de testes do app **treinaQA** (`com.treinaqa.app`) com Robot Framework e Appium.
 
+Bem-vindo ao repositório de automação mobile utilizando Robot Framework e Appium.
+
+Repositório: https://github.com/afoliveira5/teste_front_mobile_robot_treina_QA
+
+Relacionado: https://github.com/afoliveira5/robot_automacao_front_mobile
+
+## Clone do projeto
+
+```bash
+git clone https://github.com/afoliveira5/teste_front_mobile_robot_treina_QA.git
+```
+
 ## Pré-requisitos
 
 - Python 3.6+
@@ -9,12 +21,65 @@ Projeto de testes do app **treinaQA** (`com.treinaqa.app`) com Robot Framework e
 - Android SDK / dispositivo ou emulador
 - Robot Framework (`pip install -r requirements.txt`)
 
+Instale os itens abaixo antes de usar o projeto:
+
+| Item | Link |
+|------|------|
+| Python 3.6 ou superior | https://www.python.org/downloads/ |
+| Appium | https://appium.io/ |
+| Android SDK | https://developer.android.com/studio |
+| Node.js | https://nodejs.org/en/download |
+| Visual Studio Code | https://code.visualstudio.com/download |
+
 ## Instalação
 
 ```bash
 pip install -r requirements.txt
 npm install
 ```
+
+## Instalação das dependências
+
+Após instalar os pré-requisitos, abra o terminal e execute:
+
+```bash
+pip install -r requirements.txt
+npm install -g appium
+npm install -g appium-uiautomator2-driver
+pip install --upgrade robotframework-appiumlibrary
+```
+
+---
+
+## App treinaQA Android (APK de treino)
+
+O app nativo **treinaQA** (Kotlin + Jetpack Compose) fica no repositório relacionado, na pasta:
+
+```text
+treinaqa-android/
+```
+
+Serve para treinar automação mobile (Appium / Robot) com um app próprio, sem depender do app Quanta.
+
+Documentação completa (gerar APK e instalar no celular):  
+[`treinaqa-android/README.md`](https://github.com/afoliveira5/robot_automacao_front_mobile/blob/main/treinaqa-android/README.md)
+
+### Resumo rápido — gerar e instalar o APK
+
+1. Instale o [Android Studio](https://developer.android.com/studio)
+2. Abra a pasta `treinaqa-android` no Android Studio e aguarde o Gradle Sync
+3. **Build → Build Bundle(s) / APK(s) → Build APK(s)**
+4. No celular, ative **Depuração USB** e conecte no PC
+5. Confirme o aparelho: `adb devices`
+6. Instale:
+
+```bat
+adb install -r treinaqa-android\app\build\outputs\apk\debug\app-debug.apk
+```
+
+- Package: `com.treinaqa.app`
+- Login seed: `teste@gmail.com` / `Test@mobi2024`
+- Seletores: [`treinaqa-android/SELETORES.md`](https://github.com/afoliveira5/robot_automacao_front_mobile/blob/main/treinaqa-android/SELETORES.md)
 
 ## APK
 
@@ -54,6 +119,72 @@ Se o app não estiver no device, a keyword `Garantir APK instalado` instala auto
 
 - E-mail: `teste@gmail.com`
 - Senha: `Test@mobi2024`
+
+## Ordem de execução
+
+Siga os passos na ordem abaixo.
+
+### 1. Iniciar o servidor Appium
+
+```bash
+appium
+```
+
+### 2. Verificar os emuladores (AVD) instalados
+
+```bash
+emulator -list-avds
+```
+
+### 3. Iniciar o emulador
+
+```bash
+emulator -avd NomeDoSeuEmulador
+```
+
+Exemplo:
+
+```bash
+emulator -avd Medium_Phone_API_25
+```
+
+### 4. Ajustar as capabilities
+
+Altere o nome do dispositivo/emulador nas capabilities (pasta de resources/keywords da sessão):
+
+```json
+{
+  "platformName": "Android",
+  "appium:deviceName": "RX8TB06JANE",
+  "appium:platformVersion": "14.0",
+  "appium:automationName": "UiAutomator2",
+  "appium:appPackage": "com.treinaqa.app",
+  "appium:appActivity": ".MainActivity",
+  "appium:noReset": true,
+  "appium:fullReset": false
+}
+```
+
+Exemplo de capabilities (JSON):
+
+```json
+{
+  "platformName": "Android",
+  "appium:deviceName": "RX8TB06JANE",
+  "appium:platformVersion": "14.0",
+  "appium:automationName": "UiAutomator2",
+  "appium:appPackage": "com.treinaqa.app",
+  "appium:appActivity": ".MainActivity",
+  "appium:noReset": true,
+  "appium:fullReset": false
+}
+```
+
+### 5. Rodar a automação
+
+```bash
+robot -d results tests/
+```
 
 ## Rodar testes
 
