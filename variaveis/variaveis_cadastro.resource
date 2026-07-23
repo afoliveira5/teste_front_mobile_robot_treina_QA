@@ -1,0 +1,18 @@
+*** Variables ***
+${pagina_cadastro}          xpath=//*[@resource-id="view-cadastro"]
+${voltar_cadastro}          xpath=//*[@resource-id="voltarCadastro"]
+${titulo_cadastro}          xpath=//*[@resource-id="tituloCadastro"]
+${campo_nome}               xpath=//*[@resource-id="nome"]
+${campo_email_cadastro}     xpath=//*[@resource-id="emailCadastro"]
+${campo_telefone}           xpath=//*[@resource-id="telefoneCadastro"]
+${campo_cpf}                xpath=//*[@resource-id="cpfCadastro"]
+${campo_rua}                xpath=//*[@resource-id="ruaCadastro"]
+${campo_numero}             xpath=//*[@resource-id="numeroCasaCadastro"]
+${campo_bairro}             xpath=//*[@resource-id="bairroCadastro"]
+${campo_cidade}             xpath=//*[@resource-id="cidadeCadastro"]
+${campo_estado}             xpath=//*["android.widget.ScrollView/android.view.View[6]"]"
+${campo_senha_cadastro}     xpath=//*[@resource-id="senha"]
+${botao_cadastrar}          xpath=//*[@resource-id="botaoCadastrar"]
+${toast_cadastro}           xpath=//*[@resource-id="toastCadastro"]
+${modal_cadastro_sucesso}   xpath=//*[@resource-id="modalCadastroSucesso"]
+${botao_ok_cadastro}        xpath=//*[@resource-id="botaoOkCadastro"]

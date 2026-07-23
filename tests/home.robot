@@ -1,125 +1,33 @@
 *** Settings ***
 
-
-Library        AppiumLibrary
+Library    AppiumLibrary
 
 Resource    ../Keywords_session.resource
-Resource    ../keywords/keywords_local_feature_toggle.resource
-Resource    ../keywords/keywords_splash_apresentacao.resource
-Resource    ../keywords/keywords_entrar_simular_contratar_previdencia.resource
 Resource    ../keywords/keywords_login.resource
-Resource    ../keywords/keywords_selecionar_plano.resource
 Resource    ../keywords/keywords_home.resource
 
 *** Test Cases ***
 
-Deve acessar app_home
-
+Deve exibir dados do usuario apos login
     Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
     Login
-    Selecionar plano
-    Close session 
-
-Deve acessar extrato via home
-
-    Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login
-    Selecionar plano
-    Extrato home
+    Validar dados demo na home
     Close session
 
-Deve acessar perfil de investimento via home
-
+Deve abrir tela de atualizar dados
     Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
     Login
-    Selecionar plano
-    Carrossel do inicio da home 2
-    Adequar perfil de investimento
-    Acessar adequar perfil
+    Abrir atualizar dados
     Close session
 
-Deve acessar pague menos imposto via home
-
+Deve cancelar exclusao de participante
     Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
     Login
-    Selecionar plano
-    Carrossel do inicio da home 3
-    saiba quanto economizar
-    Pague menos imposto de renda
+    Cancelar exclusao participante
     Close session
 
-Deve acessar comprar planos via home
-
+Deve sair da conta
     Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
     Login
-    Selecionar plano
-    carrosel faça acontecer
+    Sair da conta
     Close session
-    
-Deve acessar contibuicao extra
-    Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login
-    Selecionar plano
-    carrosel_faça_acontecer_2
-    Close session
-
-Deve acessar objetivo futuro
-    Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login
-    Selecionar plano
-    carrosel_faça_acontecer_3
-    Close session
-
-Deve acessar aposentadoria contribuicao mensal via home
-    Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login
-    Selecionar plano
-    carrosel_aposentadoria_contribuicao 
-    Close session
-
-
-Deve acessar idade de aposentadoria via home
-    Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login
-    Selecionar plano
-    carrosel_idade_aposentadoria 
-    Close session
-
-Deve acessar proteção familiar tela via home
-    Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login
-    Selecionar plano
-    carrosel_protecao_familiar 
-    Swipe_up
-    Close session
-   

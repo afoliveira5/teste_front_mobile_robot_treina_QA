@@ -3,50 +3,33 @@
 Library    AppiumLibrary
 
 Resource    ../Keywords_session.resource
-Resource    ../keywords/keywords_local_feature_toggle.resource
-Resource    ../keywords/keywords_splash_apresentacao.resource
-Resource    ../keywords/keywords_entrar_simular_contratar_previdencia.resource
 Resource    ../keywords/keywords_login.resource
-Resource    ../keywords/keywords_selecionar_plano.resource
-Resource    ../keywords/keywords_recuperar_senha.resource
-
+Resource    ../keywords/keywords_home.resource
 
 *** Test Cases ***
 
-Deve realizar login
-
+Deve realizar login com sucesso
     Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login 
-   #Selecionar plano
+    Login
+    Validar dados demo na home
     Close session
 
-Deve validar cpf login
-
+Deve validar email invalido no login
     Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login CPF Invalido    
+    Login email invalido
     Close session
 
-Deve validar senha login
-
+Deve validar senha invalida no login
     Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login senha invalida    
+    Login senha invalida
     Close session
 
-Deve acessar o esqueci minha senha
-
+Deve abrir tela de cadastro pela login
     Start session
-    Local feature toggle
-    Splash apresentacao
-    Entrar na conta
-    Login esqueci a senha
-    Recuperar senha    
+    Abrir cadastro pela login
+    Close session
+
+Deve abrir tela esqueci senha pela login
+    Start session
+    Abrir esqueci senha pela login
     Close session

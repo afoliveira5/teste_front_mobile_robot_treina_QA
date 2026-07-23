@@ -2,64 +2,50 @@
 
 Library     AppiumLibrary
 
-Resource    ../variaveis/variaveis_login_cpf.resource
-Resource    ../variaveis/variaveis_login_senha.resource
-Resource    ../variaveis/cpf.resource
+Resource    ../variaveis/variaveis_login.resource
+Resource    ../variaveis/dados_teste.resource
+Resource    ../variaveis/variaveis_home.resource
 
 *** Keywords ***
+Aguardar tela login
+    Wait Until Element Is Visible    ${pagina_login}    30
+    Sleep    3s
+
+Preencher campo
+    [Arguments]    ${locator}    ${texto}
+    Wait Until Element Is Visible    ${locator}    15
+    Click Element                    ${locator}
+    Clear Text                       ${locator}
+    Input Text                       ${locator}    ${texto}
+
 Login
-    Wait Until Element Is Visible    ${campocpf}                      50
-    Click Element                    ${campocpf}    
-    Input Text                       ${campocpf}                      ${cpf}    
+    Aguardar tela login
+    Preencher campo    ${campo_email}    ${EMAIL}
+    Preencher campo    ${campo_senha}    ${SENHA}
+    Click Element      ${botao_entrar}
+    Wait Until Element Is Visible    ${pagina_home}    30
 
-    Click Element                    ${botaocontinuar}
-    
-    Wait Until Element Is Visible    ${camposenha}                    50
-    Click Element                    ${camposenha}
-    Input Text                       ${camposenha}                    ${senha}
+Login com credenciais
+    [Arguments]    ${email}    ${senha}
+    Aguardar tela login
+    Preencher campo    ${campo_email}    ${email}
+    Preencher campo    ${campo_senha}    ${senha}
+    Click Element      ${botao_entrar}
 
-    Click Element    ${botaoacessarconta}
-
-Login CPF Invalido
-    Wait Until Element Is Visible    ${campocpf}                      50
-    Click Element                    ${campocpf}    
-    Input Text                       ${campocpf}                      ${cpfinvalido}    
-
-    Click Element                    ${botaocontinuar}
-    
-    Wait Until Element Is Visible    ${camposenha}                    50
-    Click Element                    ${camposenha}
-    Input Text                       ${camposenha}                    ${senha}
-
-    Click Element                    ${botaoacessarconta}
-
-    Wait Until Element Is Visible    ${toastusuariosenhainvalidos}    50
-    Element Text Should Be           ${toastusuariosenhainvalidos}    ${mensagemUsuarioSenhaInvalidos}  
-    Click Element    ${bntOkToastUserSenhaInvalido}
+Login email invalido
+    Login com credenciais    ${EMAIL_INVALIDO}    ${SENHA}
+    Wait Until Element Is Visible    ${toast_login}     15
+    Element Text Should Be           ${toast_login}     ${MSG_LOGIN_INVALIDO}
 
 Login senha invalida
-    Wait Until Element Is Visible    ${campocpf}                      50
-    Click Element                    ${campocpf}    
-    Input Text                       ${campocpf}                      ${cpf}    
+    Login com credenciais    ${EMAIL}    ${SENHA_INVALIDA}
+    Wait Until Element Is Visible    ${toast_login}     15
+    Element Text Should Be           ${toast_login}     ${MSG_LOGIN_INVALIDO}
 
-    Click Element                    ${botaocontinuar}
-    
-    Wait Until Element Is Visible    ${camposenha}                    50
-    Click Element                    ${camposenha}
-    Input Text                       ${camposenha}                    ${senhainvalida}
+Abrir cadastro pela login
+    Aguardar tela login
+    Click Element                    ${link_cadastro}
 
-    Click Element                    ${botaoacessarconta}
-
-    Wait Until Element Is Visible    ${toastusuariosenhainvalidos}    50
-    Element Text Should Be           ${toastusuariosenhainvalidos}    ${mensagemUsuarioSenhaInvalidos} 
-    Click Element                    ${bntOkToastUserSenhaInvalido}
-
-Login esqueci a senha 
-    Wait Until Element Is Visible    ${campocpf}                      50
-    Click Element                    ${campocpf}    
-    Input Text                       ${campocpf}                      ${cpf}    
-
-    Click Element                    ${botaocontinuar}
-    
-    Wait Until Element Is Visible    ${camposenha}                    50
-    Click Element                    ${bntEsqueciSenha}
+Abrir esqueci senha pela login
+    Aguardar tela login
+    Click Element                    ${link_esqueci_senha}

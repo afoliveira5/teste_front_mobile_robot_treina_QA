@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "appium": "appium",
+    "install:apk": "adb -s RX8TB06JANE install -r \"C:/Users/aparecido.oliveira_s/Project/quanta/treinaqa-android/app/build/outputs/apk/debug/app-debug.apk\"",
+    "start:apk": "adb -s RX8TB06JANE shell am start -n com.treinaqa.app/.MainActivity",
+    "test": "robot -d results tests/"
   },
   "author": "Pablo Reis",
   "license": "ISC",
