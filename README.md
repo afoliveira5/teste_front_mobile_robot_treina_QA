@@ -49,7 +49,7 @@ pip install --upgrade robotframework-appiumlibrary
 
 ## App treinaQA Android (APK de treino)
 
-O app nativo **treinaQA** (Kotlin + Jetpack Compose) fica no repositório relacionado, na pasta:
+O app nativo **treinaQA** (Kotlin + Jetpack Compose) está **neste repositório**, na pasta:
 
 ```text
 treinaqa-android/
@@ -58,7 +58,7 @@ treinaqa-android/
 Serve para treinar automação mobile (Appium / Robot) com um app próprio, sem depender do app Quanta.
 
 Documentação completa (gerar APK e instalar no celular):  
-[`treinaqa-android/README.md`](https://github.com/afoliveira5/robot_automacao_front_mobile/blob/main/treinaqa-android/README.md)
+[`treinaqa-android/README.md`](./treinaqa-android/README.md)
 
 ### Resumo rápido — gerar e instalar o APK
 
@@ -74,8 +74,10 @@ adb install -r treinaqa-android\app\build\outputs\apk\debug\app-debug.apk
 ```
 
 - Package: `com.treinaqa.app`
+- Versão atual do app: **1.2.0**
 - Login seed: `teste@gmail.com` / `Test@mobi2024`
-- Seletores: [`treinaqa-android/SELETORES.md`](https://github.com/afoliveira5/robot_automacao_front_mobile/blob/main/treinaqa-android/SELETORES.md)
+- Seletores: [`treinaqa-android/SELETORES.md`](./treinaqa-android/SELETORES.md)
+- Rodapé: `Aplicativo criado pelo chefinho do teste Aparecido`
 
 ## APK
 
