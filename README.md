@@ -1,8 +1,6 @@
 # Automação Mobile — treinaQA (Robot Framework + Appium)
 
-Projeto de testes do app **treinaQA** (`com.treinaqa.app`) com Robot Framework e Appium.
-
-Bem-vindo ao repositório de automação mobile utilizando Robot Framework e Appium.
+Bem-vindo ao repositório de testes do app **treinaQA** (`com.treinaqa.app`) com Robot Framework e Appium.
 
 Repositório: https://github.com/afoliveira5/teste_front_mobile_robot_treina_QA
 
